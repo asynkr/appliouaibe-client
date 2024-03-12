@@ -1,4 +1,4 @@
-const serverUrl = "https://de6323d2-a0a3-4e52-8d58-5b8197fcc3aa-00-27stsfo3uehei.worf.replit.dev";
+var serverUrl = "https://appliouaibe-server.onrender.com";
 
 function getMessages() {
   return fetch(serverUrl + '/msg/getAll')
@@ -12,7 +12,7 @@ function postMessage(message) {
 }
 
 function getAllMessagesAndUpdate() {
-  getMessages().then(function(messages) {
+  return getMessages().then(function(messages) {
     var messagesFormatted = messages.map(function(message) {
       return { "msg": message };
     });
@@ -46,4 +46,32 @@ function new_message() {
   textarea.value = "";
 }
 
+function updateServerUrlDisplay(url) {
+  let link = document.getElementById("server-url-current");
+  link.innerText = url;
+  link.href = url;
+}
+
+function updateCurrentServerUrl(url) {
+  serverUrl = url.endsWith('/') ? url.substr(0, url.length - 1) : url;
+}
+
+function new_server_url() {
+
+  const oldUrl = serverUrl;
+
+  updateCurrentServerUrl(document.getElementById("server-url-input").value);
+  updateServerUrlDisplay("Chargement...");
+
+  getAllMessagesAndUpdate().then(function() {
+    alert("Vous avez correctement changé d'URL");
+    updateServerUrlDisplay(serverUrl);
+  }).catch(function() {
+    alert("Le changement d'URL a échoué");
+    updateCurrentServerUrl(oldUrl);
+    updateServerUrlDisplay(serverUrl);
+  });
+}
+
+updateServerUrlDisplay(serverUrl);
 getAllMessagesAndUpdate();
