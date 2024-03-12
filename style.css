@@ -1,0 +1,53 @@
+body {
+  background-color: #efdab3;
+  font-family: "Papyrus";
+}
+
+h1 {
+  color: #750c49;
+  margin: 20px;
+}
+
+textarea {
+  width: 250px;
+  margin: 10px;
+  font-family: "Comic Sans MS";
+}
+
+button {
+  margin: 10px;
+}
+ul {
+  margin: 10px;
+}
+button.buttonStyle  {
+     border-top: 1px solid #96d1f8;
+     background: #0f354f;
+     background: -webkit-gradient(linear, left top, left bottom, from(#68b2e3), to(#0f354f));
+     background: -webkit-linear-gradient(top, #68b2e3, #0f354f);
+     background: -moz-linear-gradient(top, #68b2e3, #0f354f);
+     background: -ms-linear-gradient(top, #68b2e3, #0f354f);
+     background: -o-linear-gradient(top, #68b2e3, #0f354f);
+     padding: 7px 14px;
+     -webkit-border-radius: 20px;
+     -moz-border-radius: 20px;
+     border-radius: 20px;
+     -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+     -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+     box-shadow: rgba(0,0,0,1) 0 1px 0;
+     text-shadow: rgba(0,0,0,.4) 0 1px 0;
+     color: #ffffff;
+     font-size: 19px;
+     font-family: Helvetica, Arial, Sans-Serif;
+     text-decoration: none;
+     vertical-align: middle;
+     }
+  .button.buttonStyle:hover {
+     border-top-color: #28597a;
+     background: #28597a;
+     color: #ccc;
+     }
+  .button.buttonStyle:active {
+     border-top-color: #1b435e;
+     background: #1b435e;
+     }
