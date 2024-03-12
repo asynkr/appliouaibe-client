@@ -1,3 +1,3 @@
 # appliouaibe-client
 
-Cf [le README du server](https://gitlab-student.centralesupelec.fr/alexandre.laval/appliouaibe-server)
+Cf [le README du server](https://github.com/asynkr/appliouaibe-server)
