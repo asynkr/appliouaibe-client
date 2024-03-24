@@ -1,6 +1,9 @@
 body {
   background-color: #efdab3;
   font-family: "Papyrus";
+  background-size: cover;
+  background-position: center;
+  
 }
 
 h1 {

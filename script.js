@@ -4,11 +4,11 @@ function getMessages() {
   return fetch(serverUrl + '/msg/getAll')
     .then(function(response) {
       return response.json();
-    })
+    });
 }
 
 function postMessage(message) {
-  return fetch(serverUrl + '/msg/post/' + message)
+  return fetch(serverUrl + '/msg/post/' + message);
 }
 
 function getAllMessagesAndUpdate() {
@@ -17,7 +17,7 @@ function getAllMessagesAndUpdate() {
       return { "msg": message };
     });
     update(messagesFormatted);
-  })
+  });
 }
 
 function update(tab/*: [{"msg": "..."}] */) {
@@ -36,15 +36,73 @@ function update(tab/*: [{"msg": "..."}] */) {
   }
 }
 
+function sendLocalImage() {
+  let input = document.getElementById("image-input-2");
+  let file = input.files[0];
+
+  // Check if a file was selected
+  if (file) {
+    let reader = new FileReader();
+
+    reader.onload = function(event) {
+      let imageUrl = event.target.result;
+      document.body.style.backgroundImage = `url('${imageUrl}')`;
+    };
+
+    reader.readAsDataURL(file);
+  }
+}
+
+function sendImage() {
+  let input = document.getElementById("image-input-1");
+  let file = input.files[0];
+  let formData = new FormData();
+  formData.append("image", file);
+
+  fetch(serverUrl + '/image/upload', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(data => {
+      let imageUrl = JSON.parse(data).imageUrl;
+      console.log(imageUrl);
+      displayImage(imageUrl);
+    })
+    .catch(error => {
+      console.error('Error uploading image:', error);
+    });
+}
+
+
+function displayImage(imageUrl) {
+  let container = document.getElementById("image-container");
+  container.innerHTML = "";
+
+  let img = document.createElement("img");
+  img.src = imageUrl;
+  img.alt = "Uploaded image";
+  container.appendChild(img);
+}
+
+
+
 function new_message() {
   let textarea = document.getElementById("send-msg-textarea");
 
   // Push message to server
-  postMessage(textarea.value).then(getAllMessagesAndUpdate)
+  postMessage(textarea.value).then(getAllMessagesAndUpdate);
 
   // Remove text from textarea
   textarea.value = "";
 }
+
+
 
 function updateServerUrlDisplay(url) {
   let link = document.getElementById("server-url-current");

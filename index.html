@@ -21,6 +21,14 @@
   </div>
 
   <button onclick="new_message()" class="buttonStyle">Envoyer un message</button>
+  <hr>
+  <button onclick="sendImage()" class="buttonStyle">Envoyer une image</button>
+  <input type="file" id="image-input-1" accept="image/*">
+  <div id="image-container"></div>
+
+  <hr>
+  <button onclick="sendLocalImage()" class="buttonStyle">Changer le fond d'écran</button>
+  <input type="file" id="image-input-2" accept="image/*">
 
   <!-- Changement de l'URL du serveur : -->
   <div class="bottom-div">
